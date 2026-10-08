@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimal Shop</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #111;
+      background: #fafafa;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 6%;
+      background: white;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .cart {
+      background: #111;
+      color: white;
+      border: 0;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #666;
+    }
+
+    .products {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .product img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: #eee;
+    }
+
+    .info {
+      padding: 16px;
+    }
+
+    .info h3 {
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #666;
+      margin-bottom: 14px;
+    }
+
+    .add {
+      width: 100%;
+      padding: 10px;
+      border: 0;
+      border-radius: 6px;
+      background: #111;
+      color: white;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">MINIMAL.</div>
+    <button class="cart" onclick="showCart()">
+      Cart (<span id="count">0</span>)
+    </button>
+  </header>
+
+  <section class="hero">
+    <h1>Simple Store</h1>
+    <p>Good products. No clutter.</p>
+  </section>
+
+  <main class="products">
+
+    <div class="product">
+      <img src="https://picsum.photos/500/500?random=1" alt="Classic T-Shirt">
+      <div class="info">
+        <h3>Classic T-Shirt</h3>
+        <p class="price">$25</p>
+        <button class="add" onclick="addToCart('Classic T-Shirt', 25)">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="https://picsum.photos/500/500?random=2" alt="Sneakers">
+      <div class="info">
+        <h3>Everyday Sneakers</h3>
+        <p class="price">$60</p>
+        <button class="add" onclick="addToCart('Everyday Sneakers', 60)">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="https://picsum.photos/500/500?random=3" alt="Backpack">
+      <div class="info">
+        <h3>Daily Backpack</h3>
+        <p class="price">$45</p>
+        <button class="add" onclick="addToCart('Daily Backpack', 45)">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="https://picsum.photos/500/500?random=4" alt="Watch">
+      <div class="info">
+        <h3>Minimal Watch</h3>
+        <p class="price">$80</p>
+        <button class="add" onclick="addToCart('Minimal Watch', 80)">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 Minimal Shop
+  </footer>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      document.getElementById("count").textContent = cart.length;
+    }
+
+    function showCart() {
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+
+      let total = cart.reduce((sum, item) => sum + item.price, 0);
+
+      let items = cart
+        .map(item => `${item.name} - $${item.price}`)
+        .join("\n");
+
+      alert(`${items}\n\nTotal: $${total}`);
+    }
+  </script>
+
+</body>
+</html>
